@@ -39,7 +39,7 @@ jobs:
             sudo npm install
 
             # Navigate to the server directory
-            cd dep/server
+            cd server/
 
             # Start the new PM2 process
             sudo pm2 start node
