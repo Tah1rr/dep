@@ -26,10 +26,10 @@ jobs:
             # Stop the current PM2 process
             sudo pm2 stop node
 
-            sudo chown ubuntu /var/www/Greenback-Claims/dep
-            
+            sudo chown ubuntu /var/www/Greenback-Claims-main
+            sudo chown ubuntu /var/www/Greenback-Claims-main/dep
             # Navigate to the project directory
-            cd /var/www/Greenback-Claims/dep
+            cd /var/www/Greenback-Claims-main
             sudo git reset --hard HEAD
             sudo git fetch origin main
             sudo git reset --hard origin/main
