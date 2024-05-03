@@ -19,9 +19,7 @@ jobs:
           node-version: '20'
 
       - name: Install dependencies
-        run: |
-        
-          npm install
+        run: npm install
 
       - name: Build the project
         run: |
@@ -30,17 +28,12 @@ jobs:
           ls
           mkdir build
           cp -r dist/* build/
-          
 
-  deploy:
-    name: Deploy to EC2
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v2
-      - name: Build & Deploy
+      - name: Deploy to EC2
         env:
           PRIVATE_KEY: ${{ secrets.SSH }}
         run: |
           echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
           scp -o StrictHostKeyChecking=no -i private_key -r build/* ubuntu@54.89.47.19:/var/www/Greenback-Claims-main/
+          echo "Deployment completed successfully!"
+
