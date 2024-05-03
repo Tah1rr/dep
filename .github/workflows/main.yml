@@ -29,7 +29,7 @@ jobs:
           VITE_APP_API=https://api.greenbackclaims.com/ npm run build
           ls
           mkdir build
-          cp -r client/dist/* build/
+          cp -r dist/* build/
           
 
   deploy:
