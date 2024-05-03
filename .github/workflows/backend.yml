@@ -24,7 +24,7 @@ jobs:
           # SSH into the server
           ssh -o StrictHostKeyChecking=no -i private_key ubuntu@54.89.47.19 << 'ENDSSH'
             # Stop the current PM2 process
-            sudo pm2 stop node
+            npm run pm2:stop
 
             sudo chown -R ubuntu:ubuntu /var/www/Greenback-Claims-main
             sudo chown -R ubuntu:ubuntu /var/www/Greenback-Claims-main/dep
@@ -42,5 +42,5 @@ jobs:
             cd server/
 
             # Start the new PM2 process
-            sudo pm2 start node
+            npm run pm2:start
           ENDSSH
