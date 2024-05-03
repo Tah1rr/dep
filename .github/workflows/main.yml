@@ -28,7 +28,8 @@ jobs:
           cd client
           VITE_APP_API=https://api.greenbackclaims.com/ npm run build
           ls
-          cd client
+          cd dist
+          ls
 
   deploy:
     name: Deploy to EC2
