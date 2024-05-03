@@ -28,7 +28,8 @@ jobs:
           cd client
           VITE_APP_API=https://api.greenbackclaims.com/ npm run build
           ls
-          cp -r dist/* client/dist
+          mkdir build
+          cp -r dist/* /build
           
 
   deploy:
@@ -43,4 +44,4 @@ jobs:
           PRIVATE_KEY: ${{ secrets.SSH }}
         run: |
           echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
-          scp -o StrictHostKeyChecking=no -i private_key -r client/dist/* ubuntu@54.89.47.19:/var/www/Greenback-Claims-main/
+          scp -o StrictHostKeyChecking=no -i private_key -r client/build/* ubuntu@54.89.47.19:/var/www/Greenback-Claims-main/
