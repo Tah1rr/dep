@@ -13,17 +13,21 @@ jobs:
       uses: actions/checkout@v2
 
     - name: SSH and Deploy
+      env:
+         PRIVATE_KEY: ${{ secrets.SSH }}
       run: |
+         echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
         # Install sshpass to securely pass the SSH password
-        sudo apt-get install -y sshpass
+         sudo apt-get install -y sshpass
 
         # SSH into the server
-        sshpass -p 'UtOKdIDiA4wrEVK' ssh -o StrictHostKeyChecking=no ubuntu@3.95.189.168 << 'ENDSSH'
-          # Navigate to the project directory
+        ssh -o StrictHostKeyChecking=no -i private_key ubuntu@54.89.47.19 << 'ENDSSH'
+          
           # Stop the current PM2 process
           sudo pm2 stop node
           
           sudo chown -R ubuntu:ubuntu /var/www/Greenback-Claims
+          # Navigate to the project directory
           cd /var/www/Greenback-Claims
           sudo git reset --hard HEAD
           sudo git fetch origin main
