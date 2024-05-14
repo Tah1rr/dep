@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     steps:
       - name: Checkout code
@@ -33,6 +33,6 @@ jobs:
           PRIVATE_KEY: ${{ secrets.SSH }}
         run: |
           echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
-          scp -o StrictHostKeyChecking=no -i private_key -r client/dist/* ubuntu@54.89.47.19:/var/www/Greenback-Claims-main/
+          scp -o StrictHostKeyChecking=no -i private_key -r client/dist/* ubuntu@54.224.199.167:/var/www/Greenback-Claims-main/
           echo "Deployment completed successfully!"
 
